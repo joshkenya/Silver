@@ -1,0 +1,18 @@
+<?php
+/**
+ * .htaccess file for URL rewriting (Optional, for prettier URLs)
+ */
+?>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /silver/
+    
+    # Prevent access to sensitive files
+    RewriteRule ^(config|src|database|vendor)/ - [F]
+    
+    # Redirect to index.php for pretty URLs
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?$1 [QSA,L]
+</IfModule>
